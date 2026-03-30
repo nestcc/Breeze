@@ -30,4 +30,4 @@ xcodebuild -scheme DoublePlus -configuration Debug -destination 'platform=macOS'
 
 Enable the Finder extension under **System Settings → Privacy & Security → Extensions → Added Extensions → Finder**. If Xcode shows **“Choose an app to run”**, you picked the extension scheme—use **DoublePlus** as the run target.
 
-The project is a compact reference for **sandboxed** macOS apps that pair a menu bar host with an embedded Finder Sync plug-in and shared Swift sources checked into both targets.
+The project is a compact reference for **sandboxed** macOS apps that pair a menu bar host with an embedded Finder Sync plug-in and shared Swift sources compiled into both targets. Detailed rationale lives in `docs/` (Chinese).
