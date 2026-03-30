@@ -6,14 +6,56 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A1E000072F7A53C900F97166 /* DoublePlusFinderSync.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1E000012F7A53C900F97166 /* DoublePlusFinderSync.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1E0000F2F7A53C900F97166 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E000102F7A53C900F97166 /* FinderSync.framework */; };
+		A1E000112F7A53C900F97166 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E000102F7A53C900F97166 /* FinderSync.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1E000092F7A53C900F97166 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68D968672F7A53C900F97166 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1E000022F7A53C900F97166;
+			remoteInfo = DoublePlusFinderSync;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A1E000062F7A53C900F97166 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A1E000072F7A53C900F97166 /* DoublePlusFinderSync.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		68D9686F2F7A53C900F97166 /* DoublePlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoublePlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E000012F7A53C900F97166 /* DoublePlusFinderSync.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoublePlusFinderSync.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E000102F7A53C900F97166 /* FinderSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FinderSync.framework; path = System/Library/Frameworks/FinderSync.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		68D968712F7A53C900F97166 /* DoublePlus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = DoublePlus;
+			sourceTree = "<group>";
+		};
+		A1E0000D2F7A53C900F97166 /* DoublePlusShared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DoublePlusShared;
+			sourceTree = "<group>";
+		};
+		A1E0000E2F7A53C900F97166 /* DoublePlusFinderSync */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DoublePlusFinderSync;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +65,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E0000F2F7A53C900F97166 /* FinderSync.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1E000042F7A53C900F97166 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1E000112F7A53C900F97166 /* FinderSync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,7 +84,10 @@
 			isa = PBXGroup;
 			children = (
 				68D968712F7A53C900F97166 /* DoublePlus */,
+				A1E0000D2F7A53C900F97166 /* DoublePlusShared */,
+				A1E0000E2F7A53C900F97166 /* DoublePlusFinderSync */,
 				68D968702F7A53C900F97166 /* Products */,
+				68D9691B2F7A59FD00F97166 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,8 +95,17 @@
 			isa = PBXGroup;
 			children = (
 				68D9686F2F7A53C900F97166 /* DoublePlus.app */,
+				A1E000012F7A53C900F97166 /* DoublePlusFinderSync.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68D9691B2F7A59FD00F97166 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A1E000102F7A53C900F97166 /* FinderSync.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,13 +118,16 @@
 				68D9686B2F7A53C900F97166 /* Sources */,
 				68D9686C2F7A53C900F97166 /* Frameworks */,
 				68D9686D2F7A53C900F97166 /* Resources */,
+				A1E000062F7A53C900F97166 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A1E000082F7A53C900F97166 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				68D968712F7A53C900F97166 /* DoublePlus */,
+				A1E0000D2F7A53C900F97166 /* DoublePlusShared */,
 			);
 			name = DoublePlus;
 			packageProductDependencies = (
@@ -69,6 +135,29 @@
 			productName = DoublePlus;
 			productReference = 68D9686F2F7A53C900F97166 /* DoublePlus.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A1E000022F7A53C900F97166 /* DoublePlusFinderSync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1E0000A2F7A53C900F97166 /* Build configuration list for PBXNativeTarget "DoublePlusFinderSync" */;
+			buildPhases = (
+				A1E000032F7A53C900F97166 /* Sources */,
+				A1E000042F7A53C900F97166 /* Frameworks */,
+				A1E000052F7A53C900F97166 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1E0000D2F7A53C900F97166 /* DoublePlusShared */,
+				A1E0000E2F7A53C900F97166 /* DoublePlusFinderSync */,
+			);
+			name = DoublePlusFinderSync;
+			packageProductDependencies = (
+			);
+			productName = DoublePlusFinderSync;
+			productReference = A1E000012F7A53C900F97166 /* DoublePlusFinderSync.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +170,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					68D9686E2F7A53C900F97166 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					A1E000022F7A53C900F97166 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,12 +192,20 @@
 			projectRoot = "";
 			targets = (
 				68D9686E2F7A53C900F97166 /* DoublePlus */,
+				A1E000022F7A53C900F97166 /* DoublePlusFinderSync */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		68D9686D2F7A53C900F97166 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1E000052F7A53C900F97166 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +222,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1E000032F7A53C900F97166 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1E000082F7A53C900F97166 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1E000022F7A53C900F97166 /* DoublePlusFinderSync */;
+			targetProxy = A1E000092F7A53C900F97166 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		68D968782F7A53CB00F97166 /* Debug */ = {
@@ -250,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoublePlus/DoublePlus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -259,6 +375,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -282,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoublePlus/DoublePlus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -291,6 +410,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,6 +424,74 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A1E0000B2F7A53C900F97166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DoublePlusFinderSync/DoublePlusFinderSync.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDX872BTUB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "DoublePlus Finder";
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = com.apple.FinderSync;
+				INFOPLIST_KEY_NSExtension_NSExtensionPrincipalClass = "$(PRODUCT_MODULE_NAME).FinderSync";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ncc.DoublePlus.FinderSync;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A1E0000C2F7A53C900F97166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DoublePlusFinderSync/DoublePlusFinderSync.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDX872BTUB;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "DoublePlus Finder";
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = com.apple.FinderSync;
+				INFOPLIST_KEY_NSExtension_NSExtensionPrincipalClass = "$(PRODUCT_MODULE_NAME).FinderSync";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ncc.DoublePlus.FinderSync;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -326,6 +515,15 @@
 			buildConfigurations = (
 				68D9687B2F7A53CB00F97166 /* Debug */,
 				68D9687C2F7A53CB00F97166 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1E0000A2F7A53C900F97166 /* Build configuration list for PBXNativeTarget "DoublePlusFinderSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1E0000B2F7A53C900F97166 /* Debug */,
+				A1E0000C2F7A53C900F97166 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

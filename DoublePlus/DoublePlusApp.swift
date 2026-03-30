@@ -10,8 +10,9 @@ import SwiftUI
 @main
 struct DoublePlusApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        MenuBarExtra("DoublePlus", systemImage: "doc.badge.plus") {
+            MenuBarContentView()
         }
+        .menuBarExtraStyle(.menu)
     }
 }
