@@ -14,20 +14,21 @@ struct MenuBarContentView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Breeze")
                 .font(.headline)
-            Text("在 Finder 窗口空白处或选中项上右键，选择「Breeze」子菜单即可新建文件或文件夹。")
+            Text("Right-click empty space or a selection in a Finder window, then choose the Breeze submenu to create a file or folder.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             if !FIFinderSyncController.isExtensionEnabled {
-                Text("请先在「系统设置 → 隐私与安全性 → 扩展 → 添加的扩展」中启用 Breeze 的 Finder 扩展。")
+                Text("Breeze won’t appear under File Providers—that’s a different extension type. Use the button below, search Settings for Breeze, or run in Terminal (after launching Breeze once): pluginkit -e use -p com.apple.FinderSync -i Ncc.Breeze.FinderSync")
                     .font(.caption)
                     .foregroundStyle(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             Divider()
-            Button("管理 Finder 扩展…") {
+            Button("Manage Finder Extensions…") {
                 FIFinderSyncController.showExtensionManagementInterface()
             }
-            Button("退出 Breeze") {
+            Button("Quit Breeze") {
                 NSApplication.shared.terminate(nil)
             }
             .keyboardShortcut("q", modifiers: .command)

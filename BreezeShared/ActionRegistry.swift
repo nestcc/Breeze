@@ -36,6 +36,7 @@ public final class ActionRegistry: @unchecked Sendable {
 
     private func registerBuiltIn() {
         register(NewTextFileAction())
+        register(NewJSONFileAction())
         register(NewMarkdownFileAction())
         register(NewFolderAction())
     }

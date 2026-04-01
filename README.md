@@ -28,6 +28,6 @@ Requires macOS **15.7**+ and Xcode with signing for both the app and embedded `.
 xcodebuild -scheme Breeze -configuration Debug -destination 'platform=macOS' build
 ```
 
-Enable the Finder extension under **System Settings → Privacy & Security → Extensions → Added Extensions → Finder**. If Xcode shows **“Choose an app to run”**, you picked the extension scheme—use **Breeze** as the run target.
+Breeze uses a **Finder Sync** extension, **not** a File Provider—**it may not appear under “File Providers”** in System Settings (that list is for a different extension type). Prefer **Manage Finder Extensions…** from the menu bar, search Settings for “Finder”/“Breeze”, or on older macOS **Privacy & Security → Extensions → Added Extensions → Finder**. If the UI never lists the extension, after launching the app once you can run: `pluginkit -e use -p com.apple.FinderSync -i Ncc.Breeze.FinderSync`. If Xcode shows **“Choose an app to run”**, you picked the extension scheme—use **Breeze** as the run target.
 
 The project is a compact reference for **sandboxed** macOS apps that pair a menu bar host with an embedded Finder Sync plug-in and shared Swift sources compiled into both targets. Detailed rationale lives in `docs/` (Chinese).

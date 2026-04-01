@@ -3,8 +3,12 @@ import FinderSync
 
 final class FinderSync: FIFinderSync {
 
-    /// Valid only during menu construction and menu item handling (per Apple docs for targeted/selected URLs).
-    private var lastMenuKind: FinderMenuKind = .contextualMenuForContainer
+    private struct MenuActionPayload {
+        let actionID: String
+        let context: FinderActionContext
+    }
+
+    private var actionByTag: [Int: MenuActionPayload] = [:]
 
     override init() {
         super.init()
@@ -13,23 +17,27 @@ final class FinderSync: FIFinderSync {
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu? {
-        lastMenuKind = Self.mapMenuKind(menuKind)
+        actionByTag.removeAll(keepingCapacity: true)
+        let mappedMenuKind = Self.mapMenuKind(menuKind)
         let controller = FIFinderSyncController.default()
         let targeted = controller.targetedURL() as URL?
         let selected = Self.selectedURLs(from: controller)
+        let context = FinderActionContext(menuKind: mappedMenuKind, targetedURL: targeted, selectedItemURLs: selected)
 
         let submenu = NSMenu(title: "Breeze")
-        let actions = ActionRegistry.shared.actions(for: lastMenuKind)
+        let actions = ActionRegistry.shared.actions(for: mappedMenuKind)
+        var nextTag = 1
         for action in actions {
-            let ctx = FinderActionContext(menuKind: lastMenuKind, targetedURL: targeted, selectedItemURLs: selected)
-            guard action.validate(context: ctx) else { continue }
+            guard action.validate(context: context) else { continue }
             let item = NSMenuItem(
                 title: action.title,
                 action: #selector(performMenuAction(_:)),
                 keyEquivalent: ""
             )
             item.target = self
-            item.representedObject = action.id
+            item.tag = nextTag
+            actionByTag[nextTag] = MenuActionPayload(actionID: action.id, context: context)
+            nextTag += 1
             submenu.addItem(item)
         }
 
@@ -43,23 +51,28 @@ final class FinderSync: FIFinderSync {
     }
 
     @objc private func performMenuAction(_ sender: NSMenuItem) {
-        guard let id = sender.representedObject as? String else { return }
-        let controller = FIFinderSyncController.default()
-        let targeted = controller.targetedURL() as URL?
-        let selected = Self.selectedURLs(from: controller)
-        let ctx = FinderActionContext(menuKind: lastMenuKind, targetedURL: targeted, selectedItemURLs: selected)
-        guard let action = ActionRegistry.shared.action(id: id) else { return }
-        guard action.validate(context: ctx) else { return }
+        guard let payload = actionByTag[sender.tag] else {
+            FileCreationService.debugLog("menuClick missingPayload tag=\(sender.tag) title=\(sender.title)")
+            return
+        }
+        FileCreationService.debugLog("menuClick id=\(payload.actionID) kind=\(payload.context.menuKind) targeted=\(payload.context.targetedURL?.path ?? "nil") selectedCount=\(payload.context.selectedItemURLs.count)")
+        guard let action = ActionRegistry.shared.action(id: payload.actionID) else { return }
+        guard action.validate(context: payload.context) else {
+            FileCreationService.debugLog("validate=false id=\(payload.actionID)")
+            Self.presentError(FileCreationError.noDirectoryURL)
+            return
+        }
         do {
-            try action.perform(context: ctx)
+            try action.perform(context: payload.context)
+            FileCreationService.debugLog("perform=success id=\(payload.actionID)")
         } catch {
+            FileCreationService.debugLog("perform=error id=\(payload.actionID) error=\(error.localizedDescription)")
             Self.presentError(error)
         }
     }
 
     private static func selectedURLs(from controller: FIFinderSyncController) -> [URL] {
-        guard let urls = controller.selectedItemURLs() as? [URL] else { return [] }
-        return urls
+        controller.selectedItemURLs() ?? []
     }
 
     private static func mapMenuKind(_ kind: FIMenuKind) -> FinderMenuKind {

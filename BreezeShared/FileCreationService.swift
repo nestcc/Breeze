@@ -1,4 +1,5 @@
 import Foundation
+import os
 
 public enum FileCreationError: Error, LocalizedError {
     case noDirectoryURL
@@ -7,14 +8,47 @@ public enum FileCreationError: Error, LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noDirectoryURL:
-            return "无法确定目标文件夹。"
+            return "Could not determine the target folder."
         case .couldNotCreate:
-            return "无法创建文件或文件夹。"
+            return "Could not create the file or folder."
         }
     }
 }
 
 public enum FileCreationService {
+    private static let logger = Logger(subsystem: "Ncc.Breeze", category: "FileCreation")
+
+    public static func debugLog(_ message: String) {
+        logger.log("\(message, privacy: .public)")
+        guard let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: SharedAppGroup.identifier) else {
+            return
+        }
+        let logURL = groupURL.appendingPathComponent("breeze-debug.log", isDirectory: false)
+        let line = "\(Date()): \(message)\n"
+        let data = Data(line.utf8)
+        if FileManager.default.fileExists(atPath: logURL.path) {
+            if let handle = try? FileHandle(forWritingTo: logURL) {
+                defer { try? handle.close() }
+                try? handle.seekToEnd()
+                try? handle.write(contentsOf: data)
+            }
+        } else {
+            try? data.write(to: logURL, options: .atomic)
+        }
+    }
+
+    /// Executes work while holding security-scoped access (when available) for sandboxed extensions.
+    public static func withWriteAccess<T>(to directory: URL, _ work: (URL) throws -> T) throws -> T {
+        let hasScopedAccess = directory.startAccessingSecurityScopedResource()
+        defer {
+            if hasScopedAccess {
+                directory.stopAccessingSecurityScopedResource()
+            }
+        }
+        debugLog("withWriteAccess path=\(directory.path) scoped=\(hasScopedAccess)")
+        return try work(directory)
+    }
+
     /// Resolves the directory for “new file/folder” from Finder context.
     public static func directoryURL(for context: FinderActionContext) -> URL? {
         switch context.menuKind {
@@ -22,9 +56,8 @@ public enum FileCreationService {
             return context.targetedURL
         case .contextualMenuForItems:
             guard let url = context.targetedURL ?? context.selectedItemURLs.first else { return nil }
-            var isDir: ObjCBool = false
-            guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir) else { return nil }
-            if isDir.boolValue { return url }
+            // For item-context menus, create next to the selected item (same visible folder),
+            // not *inside* a selected folder.
             return url.deletingLastPathComponent()
         case .toolbarItemMenu:
             return context.targetedURL
