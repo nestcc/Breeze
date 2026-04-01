@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68D9686E2F7A53C900F97166"
-               BuildableName = "DoublePlus.app"
-               BlueprintName = "DoublePlus"
-               ReferencedContainer = "container:DoublePlus.xcodeproj">
+               BuildableName = "Breeze.app"
+               BlueprintName = "Breeze"
+               ReferencedContainer = "container:Breeze.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1E000022F7A53C900F97166"
-               BuildableName = "DoublePlusFinderSync.appex"
-               BlueprintName = "DoublePlusFinderSync"
-               ReferencedContainer = "container:DoublePlus.xcodeproj">
+               BuildableName = "BreezeFinderSync.appex"
+               BlueprintName = "BreezeFinderSync"
+               ReferencedContainer = "container:Breeze.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68D9686E2F7A53C900F97166"
-            BuildableName = "DoublePlus.app"
-            BlueprintName = "DoublePlus"
-            ReferencedContainer = "container:DoublePlus.xcodeproj">
+            BuildableName = "Breeze.app"
+            BlueprintName = "Breeze"
+            ReferencedContainer = "container:Breeze.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68D9686E2F7A53C900F97166"
-            BuildableName = "DoublePlus.app"
-            BlueprintName = "DoublePlus"
-            ReferencedContainer = "container:DoublePlus.xcodeproj">
+            BuildableName = "Breeze.app"
+            BlueprintName = "Breeze"
+            ReferencedContainer = "container:Breeze.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

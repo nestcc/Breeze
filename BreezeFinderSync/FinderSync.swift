@@ -18,7 +18,7 @@ final class FinderSync: FIFinderSync {
         let targeted = controller.targetedURL() as URL?
         let selected = Self.selectedURLs(from: controller)
 
-        let submenu = NSMenu(title: "DoublePlus")
+        let submenu = NSMenu(title: "Breeze")
         let actions = ActionRegistry.shared.actions(for: lastMenuKind)
         for action in actions {
             let ctx = FinderActionContext(menuKind: lastMenuKind, targetedURL: targeted, selectedItemURLs: selected)
@@ -36,7 +36,7 @@ final class FinderSync: FIFinderSync {
         guard !submenu.items.isEmpty else { return nil }
 
         let rootMenu = NSMenu()
-        let parent = NSMenuItem(title: "DoublePlus", action: nil, keyEquivalent: "")
+        let parent = NSMenuItem(title: "Breeze", action: nil, keyEquivalent: "")
         parent.submenu = submenu
         rootMenu.addItem(parent)
         return rootMenu
@@ -79,7 +79,7 @@ final class FinderSync: FIFinderSync {
 
     private static func presentError(_ error: Error) {
         let alert = NSAlert()
-        alert.messageText = "DoublePlus"
+        alert.messageText = "Breeze"
         alert.informativeText = error.localizedDescription
         alert.alertStyle = .warning
         alert.runModal()
